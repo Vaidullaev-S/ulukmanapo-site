@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ulukmanapo — Официальный сайт</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Стили для текстов песен */
+        .lyrics-scroll {
+            height: 200px; 
+            overflow-y: auto; 
+            margin-bottom: 20px; 
+            padding-right: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            scrollbar-width: thin;
+            scrollbar-color: #ff9000 #f0f0f0;
+        }
+        .lyrics-scroll::-webkit-scrollbar { width: 6px; }
+        .lyrics-scroll::-webkit-scrollbar-thumb { background-color: #ff9000; border-radius: 10px; }
+        
+        /* Стили для плеера */
+        audio {
+            width: 100%;
+            height: 35px;
+            filter: grayscale(1) contrast(1.2) brightness(1.1);
+            margin-bottom: 15px;
+        }
+
+        /* Кнопка лайка */
+        .like-btn {
+            background: none;
+            border: 1px solid #ff9000;
+            color: #ff9000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "Space Mono", Arial, sans-serif;
+        }
+        .like-btn.active {
+            background: #ff9000;
+            color: #fff;
+        }
+        .fh5co-blog { background: #fff; padding-bottom: 20px; margin-bottom: 30px; border: 1px solid #eee; }
+        #fh5co-consult { padding: 60px 0; background: #f9f9f9; }
+    </style>
+
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        
+    <div class="fh5co-loader"></div>
+    
+    <div id="page"> 
+    <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/ulukmanapo.jpg);" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t js-fullheight">
+                        <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
+                            <div class="profile-thumb" style="background: url(images/996.webp);"></div>
+                            <h1><span>Ulukmanapo</span></h1>
+                            <h3><span>музыкант, рэпер</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="fh5co-about" class="animate-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Обо мне</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="info">
+                        <li><span class="first-block">Имя:</span><span class="second-block">Улукман Осмоналиев</span></li>
+                        <li><span class="first-block">Локация:</span><span class="second-block">Бишкек, Кыргызстан</span></li>
+                        <li><span class="first-block">Возраст:</span><span class="second-block">33 года</span></li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <h2>Биография</h2>
+                    <p>Ulukmanapo — один из самых знаковых артистов современной кыргызской сцены. Его уникальный стиль — это сочетание жесткого уличного рэпа и мелодичного исполнения, которое находит отклик у миллионов слушателей по всему миру.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fh5co-blog">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Популярные треки</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="fh5co-blog animate-box">
+                        <a href="#" class="blog-bg" style="background-image: url(images/998.webp);"></a>
+                        <div class="blog-text">
+                            <h3>Okey-Okey</h3>
+                            <div class="lyrics-scroll">
+                                <p>Мои пути были пустыми<br>Теперь воздвиг свой храм как Сулейман в пустыне<br>Всевышний моя скала<br>Моя молитва спасает меня от всяческого зла...</p>
+                            </div>
+                            <audio controls><source src="music/okey_okey.mp3" type="audio/mpeg"></audio>
+                            <button class="like-btn" onclick="toggleLike('song1')" id="btn-song1">
+                                <i class="icon-heart2"></i> <span id="count-song1">0</span>
+                            </button>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="fh5co-blog animate-box">
+                        <a href="#" class="blog-bg" style="background-image: url(images/дензл.webp);"></a>
+                        <div class="blog-text">
+                            <h3>Denzel W</h3>
+                            <div class="lyrics-scroll">
+                                <p>Такой же опасный как Дензел<br>Лечу на мерседес бензе<br>Стреляет очередной Бэнгер<br>Такой же опасный как Дензел...</p>
+                            </div>
+                            <audio controls><source src="music/denzel_w.mp3" type="audio/mpeg"></audio>
+                            <button class="like-btn" onclick="toggleLike('song2')" id="btn-song2">
+                                <i class="icon-heart2"></i> <span id="count-song2">0</span>
+                            </button>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="fh5co-blog animate-box">
+                        <a href="#" class="blog-bg" style="background-image: url(images/CrockoLaco.webp);"></a>
+                        <div class="blog-text">
+                            <h3>Crocko Laco</h3>
+                            <div class="lyrics-scroll">
+                                <p>Запаниковал, но я подумал о матери<br>Мне нужно было выбраться<br>У меня было много времени на размышление...</p>
+                            </div>
+                            <audio controls><source src="music/crocko_laco.mp3" type="audio/mpeg"></audio>
+                            <button class="like-btn" onclick="toggleLike('song3')" id="btn-song3">
+                                <i class="icon-heart2"></i> <span id="count-song3">0</span>
+                            </button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fh5co-consult">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+                    <h2>Обсуждение</h2>
+                    <p>Поделись своим мнением о треках Ulukmanapo</p>
+                </div>
+            </div>
+            <div class="row animate-box">
+                <div class="col-md-10 col-md-offset-1" style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div id="disqus_thread"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="fh5co-footer" role="contentinfo">
+        <div class="container">
+            <div class="row copyright">
+                <div class="col-md-12 text-center">
+                    <p><small>&copy; 2026 Vaidullaev. Сделано для фанатов Ulukmanapo.</small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // ЛАЙКИ (LocalStorage)
+        function toggleLike(id) {
+            let countSpan = document.getElementById('count-' + id);
+            let btn = document.getElementById('btn-' + id);
+            let likes = parseInt(localStorage.getItem(id)) || 0;
+            let active = localStorage.getItem(id + '_active') === 'true';
+
+            if (!active) {
+                likes++;
+                localStorage.setItem(id + '_active', 'true');
+                btn.classList.add('active');
+            } else {
+                likes--;
+                localStorage.setItem(id + '_active', 'false');
+                btn.classList.remove('active');
+            }
+            localStorage.setItem(id, likes);
+            countSpan.innerText = likes;
+        }
+
+        window.onload = function() {
+            ['song1', 'song2', 'song3'].forEach(id => {
+                let saved = localStorage.getItem(id) || Math.floor(Math.random() * 300 + 100);
+                if (!localStorage.getItem(id)) localStorage.setItem(id, saved);
+                document.getElementById('count-' + id).innerText = saved;
+                if (localStorage.getItem(id + '_active') === 'true') document.getElementById('btn-' + id).classList.add('active');
+            });
+        };
+
+        // АВТОПАУЗА МУЗЫКИ
+        document.addEventListener('play', function(e){
+            var audios = document.getElementsByTagName('audio');
+            for(var i = 0, len = audios.length; i < len;i++){
+                if(audios[i] != e.target) audios[i].pause();
+            }
+        }, true);
+
+        // DISQUS (Твой личный shortname уже здесь)
+        var disqus_config = function () { 
+            this.page.url = window.location.href; 
+            this.page.identifier = 'ulukmanapo_fan_page'; 
+        };
+        (function() { 
+            var d = document, s = d.createElement('script'); 
+            s.src = 'https://ulukmanapo-fan-site.disqus.com/embed.js'; 
+            s.setAttribute('data-timestamp', +new Date()); 
+            (d.head || d.body).appendChild(s); 
+        })();
+    </script>
+    </body>
+</html>
