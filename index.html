@@ -15,58 +15,25 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Стили для текстов песен */
-        .lyrics-scroll {
-            height: 200px; 
-            overflow-y: auto; 
-            margin-bottom: 20px; 
-            padding-right: 10px;
-            font-size: 14px;
-            line-height: 1.6;
-            scrollbar-width: thin;
-            scrollbar-color: #ff9000 #f0f0f0;
-        }
-        .lyrics-scroll::-webkit-scrollbar { width: 6px; }
-        .lyrics-scroll::-webkit-scrollbar-thumb { background-color: #ff9000; border-radius: 10px; }
-        
-        /* Стили для плеера */
-        audio {
-            width: 100%;
-            height: 35px;
-            filter: grayscale(1) contrast(1.2) brightness(1.1);
-            margin-bottom: 15px;
-        }
-
-        /* Кнопка лайка */
-        .like-btn {
-            background: none;
-            border: 1px solid #ff9000;
-            color: #ff9000;
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: "Space Mono", Arial, sans-serif;
-        }
-        .like-btn.active {
-            background: #ff9000;
-            color: #fff;
-        }
-        .fh5co-blog { background: #fff; padding-bottom: 20px; margin-bottom: 30px; border: 1px solid #eee; }
-        #fh5co-consult { padding: 60px 0; background: #f9f9f9; }
+        .lyrics-scroll { height: 180px; overflow-y: auto; margin-bottom: 15px; padding-right: 10px; font-size: 13px; scrollbar-width: thin; scrollbar-color: #ff9000 #f0f0f0; }
+        .lyrics-scroll::-webkit-scrollbar { width: 5px; }
+        .lyrics-scroll::-webkit-scrollbar-thumb { background: #ff9000; border-radius: 10px; }
+        audio { width: 100%; height: 30px; margin-bottom: 10px; filter: sepia(20%) hue-rotate(10deg); }
+        .like-btn { background: none; border: 1px solid #ff9000; color: #ff9000; padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: 0.3s; font-size: 12px; }
+        .like-btn.active { background: #ff9000; color: #fff; }
+        .fh5co-blog { margin-bottom: 40px; border: 1px solid #f0f0f0; transition: 0.3s; background: #fff; }
+        .fh5co-blog:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        #fh5co-consult { background: #fdfdfd; padding: 50px 0; }
+        .fh5co-social-icons { padding: 0; margin: 0; }
+        .fh5co-social-icons li { display: inline-block; list-style: none; }
     </style>
-
     <script src="js/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        
     <div class="fh5co-loader"></div>
+    <div id="page">
     
-    <div id="page"> 
-    <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/ulukmanapo.jpg);" data-stellar-background-ratio="0.5">
+    <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/ulukmanapo.jpg);">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -75,7 +42,7 @@
                         <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
                             <div class="profile-thumb" style="background: url(images/996.webp);"></div>
                             <h1><span>Ulukmanapo</span></h1>
-                            <h3><span>музыкант, рэпер</span></h3>
+                            <h3><span>артист • музыкант</span></h3>
                         </div>
                     </div>
                 </div>
@@ -86,21 +53,49 @@
     <div id="fh5co-about" class="animate-box">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>Обо мне</h2>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4">
                     <ul class="info">
-                        <li><span class="first-block">Имя:</span><span class="second-block">Улукман Осмоналиев</span></li>
-                        <li><span class="first-block">Локация:</span><span class="second-block">Бишкек, Кыргызстан</span></li>
-                        <li><span class="first-block">Возраст:</span><span class="second-block">33 года</span></li>
+                        <li><span class="first-block">Имя:</span><span class="second-block">Улукман</span></li>
+                        <li><span class="first-block">Город:</span><span class="second-block">Бишкек</span></li>
+                        <li><span class="first-block">Instagram:</span><span class="second-block"><a href="https://www.instagram.com/ulukmanapo/" target="_blank" style="color: #ff9000;">@ulukmanapo</a></span></li>
                     </ul>
                 </div>
                 <div class="col-md-8">
                     <h2>Биография</h2>
-                    <p>Ulukmanapo — один из самых знаковых артистов современной кыргызской сцены. Его уникальный стиль — это сочетание жесткого уличного рэпа и мелодичного исполнения, которое находит отклик у миллионов слушателей по всему миру.</p>
+                    <p>Ulukmanapo — один из самых влиятельных артистов кыргызской хип-хоп сцены. Его музыка сочетает в себе искренность улиц, мощный вайб и лиричность, которая находит отклик в сердцах миллионов слушателей.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fh5co-resume" class="fh5co-bg-color">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Дискография</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="timeline">
+                        <li class="timeline-heading text-center animate-box">
+                            <div><h3>Популярные альбомы</h3></div>
+                        </li>
+                        <li class="animate-box timeline-unverted">
+                            <div class="timeline-badge"><i class="icon-music2"></i></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"><h3 class="timeline-title">Crocko Laco</h3><span class="company">Альбом — 2021</span></div>
+                                <div class="timeline-body"><p>Прорывной релиз, включающий главные хиты, которые принесли артисту широкую известность.</p></div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted animate-box">
+                            <div class="timeline-badge"><i class="icon-music2"></i></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"><h3 class="timeline-title">Мактуб</h3><span class="company">Альбом — 2023</span></div>
+                                <div class="timeline-body"><p>Концептуальный альбом, раскрывающий новые грани творчества Улукмана.</p></div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -108,56 +103,38 @@
 
     <div id="fh5co-blog">
         <div class="container">
-            <div class="row animate-box">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>Популярные треки</h2>
-                </div>
-            </div>
+            <div class="row animate-box"><div class="col-md-8 col-md-offset-2 text-center fh5co-heading"><h2>Популярные треки</h2></div></div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="fh5co-blog animate-box">
                         <a href="#" class="blog-bg" style="background-image: url(images/998.webp);"></a>
                         <div class="blog-text">
                             <h3>Okey-Okey</h3>
-                            <div class="lyrics-scroll">
-                                <p>Мои пути были пустыми<br>Теперь воздвиг свой храм как Сулейман в пустыне<br>Всевышний моя скала<br>Моя молитва спасает меня от всяческого зла...</p>
-                            </div>
+                            <div class="lyrics-scroll"><p>Мои пути были пустыми...<br>Теперь воздвиг свой храм как Сулейман в пустыне...<br>Всевышний моя скала...<br>Моя молитва спасает меня от всяческого зла.</p></div>
                             <audio controls><source src="music/okey_okey.mp3" type="audio/mpeg"></audio>
-                            <button class="like-btn" onclick="toggleLike('song1')" id="btn-song1">
-                                <i class="icon-heart2"></i> <span id="count-song1">0</span>
-                            </button>
+                            <button class="like-btn" onclick="toggleLike('song1')" id="btn-song1"><i class="icon-heart2"></i> <span id="count-song1">0</span></button>
                         </div> 
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="fh5co-blog animate-box">
                         <a href="#" class="blog-bg" style="background-image: url(images/дензл.webp);"></a>
                         <div class="blog-text">
                             <h3>Denzel W</h3>
-                            <div class="lyrics-scroll">
-                                <p>Такой же опасный как Дензел<br>Лечу на мерседес бензе<br>Стреляет очередной Бэнгер<br>Такой же опасный как Дензел...</p>
-                            </div>
+                            <div class="lyrics-scroll"><p>Такой же опасный как Дензел...<br>Лечу на мерседес бензе...<br>Стреляет очередной бэнгер...<br>Такой же опасный как Дензел.</p></div>
                             <audio controls><source src="music/denzel_w.mp3" type="audio/mpeg"></audio>
-                            <button class="like-btn" onclick="toggleLike('song2')" id="btn-song2">
-                                <i class="icon-heart2"></i> <span id="count-song2">0</span>
-                            </button>
+                            <button class="like-btn" onclick="toggleLike('song2')" id="btn-song2"><i class="icon-heart2"></i> <span id="count-song2">0</span></button>
                         </div> 
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="fh5co-blog animate-box">
                         <a href="#" class="blog-bg" style="background-image: url(images/CrockoLaco.webp);"></a>
                         <div class="blog-text">
                             <h3>Crocko Laco</h3>
-                            <div class="lyrics-scroll">
-                                <p>Запаниковал, но я подумал о матери<br>Мне нужно было выбраться<br>У меня было много времени на размышление...</p>
-                            </div>
+                            <div class="lyrics-scroll"><p>Запаниковал, но я подумал о матери...<br>Мне нужно было выбраться...<br>У меня было много времени на размышление...<br>Мне не нужно было много, лишь бы остаться собой.</p></div>
                             <audio controls><source src="music/crocko_laco.mp3" type="audio/mpeg"></audio>
-                            <button class="like-btn" onclick="toggleLike('song3')" id="btn-song3">
-                                <i class="icon-heart2"></i> <span id="count-song3">0</span>
-                            </button>
+                            <button class="like-btn" onclick="toggleLike('song3')" id="btn-song3"><i class="icon-heart2"></i> <span id="count-song3">0</span></button>
                         </div> 
                     </div>
                 </div>
@@ -167,14 +144,9 @@
 
     <div id="fh5co-consult">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-                    <h2>Обсуждение</h2>
-                    <p>Поделись своим мнением о треках Ulukmanapo</p>
-                </div>
-            </div>
+            <div class="row animate-box"><div class="col-md-8 col-md-offset-2 text-center fh5co-heading"><h2>Обсуждение</h2></div></div>
             <div class="row animate-box">
-                <div class="col-md-10 col-md-offset-1" style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div class="col-md-10 col-md-offset-1" style="background:#fff; padding:20px; border-radius:8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                     <div id="disqus_thread"></div>
                 </div>
             </div>
@@ -183,9 +155,18 @@
 
     <footer id="fh5co-footer" role="contentinfo">
         <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Следи за артистом</h2>
+                    <ul class="fh5co-social-icons">
+                        <li><a href="https://www.instagram.com/ulukmanapo/" target="_blank"><i class="icon-instagram" style="font-size: 30px; color: #ff9000;"></i></a></li>
+                        <li style="margin-left: 20px;"><a href="https://www.youtube.com/@Ulukmanapo" target="_blank"><i class="icon-youtube" style="font-size: 30px; color: #ff9000;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="row copyright">
                 <div class="col-md-12 text-center">
-                    <p><small>&copy; 2026 Vaidullaev. Сделано для фанатов Ulukmanapo.</small></p>
+                    <p><small>&copy; 2026 Vaidullaev. Сделано для фанатов.</small></p>
                 </div>
             </div>
         </div>
@@ -199,36 +180,35 @@
     <script src="js/main.js"></script>
 
     <script>
-        // ЛАЙКИ (LocalStorage)
+        // ЛАЙКИ
         function toggleLike(id) {
             let countSpan = document.getElementById('count-' + id);
             let btn = document.getElementById('btn-' + id);
             let likes = parseInt(localStorage.getItem(id)) || 0;
             let active = localStorage.getItem(id + '_active') === 'true';
-
-            if (!active) {
-                likes++;
-                localStorage.setItem(id + '_active', 'true');
-                btn.classList.add('active');
-            } else {
-                likes--;
-                localStorage.setItem(id + '_active', 'false');
-                btn.classList.remove('active');
+            if (!active) { 
+                likes++; 
+                localStorage.setItem(id + '_active', 'true'); 
+                btn.classList.add('active'); 
+            } else { 
+                likes--; 
+                localStorage.setItem(id + '_active', 'false'); 
+                btn.classList.remove('active'); 
             }
-            localStorage.setItem(id, likes);
+            localStorage.setItem(id, likes); 
             countSpan.innerText = likes;
         }
 
         window.onload = function() {
             ['song1', 'song2', 'song3'].forEach(id => {
-                let saved = localStorage.getItem(id) || Math.floor(Math.random() * 300 + 100);
+                let saved = localStorage.getItem(id) || Math.floor(Math.random() * 500 + 100);
                 if (!localStorage.getItem(id)) localStorage.setItem(id, saved);
                 document.getElementById('count-' + id).innerText = saved;
                 if (localStorage.getItem(id + '_active') === 'true') document.getElementById('btn-' + id).classList.add('active');
             });
         };
 
-        // АВТОПАУЗА МУЗЫКИ
+        // АВТОПАУЗА
         document.addEventListener('play', function(e){
             var audios = document.getElementsByTagName('audio');
             for(var i = 0, len = audios.length; i < len;i++){
@@ -236,7 +216,7 @@
             }
         }, true);
 
-        // DISQUS (Твой личный shortname уже здесь)
+        // DISQUS
         var disqus_config = function () { 
             this.page.url = window.location.href; 
             this.page.identifier = 'ulukmanapo_fan_page'; 
