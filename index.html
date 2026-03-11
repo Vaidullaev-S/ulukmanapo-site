@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-md-8">
                     <h2>Биография</h2>
-                    <p>Ulukmanapo — один из самых влиятельных артистов кыргызской хип-хоп сцены. Его музыка сочетает в себе искренность улиц, мощный вайб и лиричность, которая находит отклик в сердцах миллионов слушателей.</p>
+                    <p>Ulukmanapo — яркий представитель кыргызской хип-хоп сцены. Его музыка сочетает в себе искренность улиц, мощный вайб и лиричность, которая находит отклик в сердцах миллионов слушателей по всему СНГ.</p>
                 </div>
             </div>
         </div>
@@ -85,14 +85,14 @@
                             <div class="timeline-badge"><i class="icon-music2"></i></div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading"><h3 class="timeline-title">Crocko Laco</h3><span class="company">Альбом — 2021</span></div>
-                                <div class="timeline-body"><p>Прорывной релиз, включающий главные хиты, которые принесли артисту широкую известность.</p></div>
+                                <div class="timeline-body"><p>Культовый релиз, ставший классикой современного хип-хопа в регионе.</p></div>
                             </div>
                         </li>
                         <li class="timeline-inverted animate-box">
                             <div class="timeline-badge"><i class="icon-music2"></i></div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading"><h3 class="timeline-title">Мактуб</h3><span class="company">Альбом — 2023</span></div>
-                                <div class="timeline-body"><p>Концептуальный альбом, раскрывающий новые грани творчества Улукмана.</p></div>
+                                <div class="timeline-body"><p>Концептуальная работа с глубоким смыслом и фирменным звучанием.</p></div>
                             </div>
                         </li>
                     </ul>
@@ -132,7 +132,7 @@
                         <a href="#" class="blog-bg" style="background-image: url(images/CrockoLaco.webp);"></a>
                         <div class="blog-text">
                             <h3>Crocko Laco</h3>
-                            <div class="lyrics-scroll"><p>Запаниковал, но я подумал о матери...<br>Мне нужно было выбраться...<br>У меня было много времени на размышление...<br>Мне не нужно было много, лишь бы остаться собой.</p></div>
+                            <div class="lyrics-scroll"><p>Запаниковал, но я подумал о матери...<br>Мне нужно было выбраться...<br>У меня было много времени на размышление...</p></div>
                             <audio controls><source src="music/crocko_laco.mp3" type="audio/mpeg"></audio>
                             <button class="like-btn" onclick="toggleLike('song3')" id="btn-song3"><i class="icon-heart2"></i> <span id="count-song3">0</span></button>
                         </div> 
@@ -180,23 +180,14 @@
     <script src="js/main.js"></script>
 
     <script>
-        // ЛАЙКИ
         function toggleLike(id) {
             let countSpan = document.getElementById('count-' + id);
             let btn = document.getElementById('btn-' + id);
             let likes = parseInt(localStorage.getItem(id)) || 0;
             let active = localStorage.getItem(id + '_active') === 'true';
-            if (!active) { 
-                likes++; 
-                localStorage.setItem(id + '_active', 'true'); 
-                btn.classList.add('active'); 
-            } else { 
-                likes--; 
-                localStorage.setItem(id + '_active', 'false'); 
-                btn.classList.remove('active'); 
-            }
-            localStorage.setItem(id, likes); 
-            countSpan.innerText = likes;
+            if (!active) { likes++; localStorage.setItem(id + '_active', 'true'); btn.classList.add('active'); }
+            else { likes--; localStorage.setItem(id + '_active', 'false'); btn.classList.remove('active'); }
+            localStorage.setItem(id, likes); countSpan.innerText = likes;
         }
 
         window.onload = function() {
@@ -208,15 +199,6 @@
             });
         };
 
-        // АВТОПАУЗА
-        document.addEventListener('play', function(e){
-            var audios = document.getElementsByTagName('audio');
-            for(var i = 0, len = audios.length; i < len;i++){
-                if(audios[i] != e.target) audios[i].pause();
-            }
-        }, true);
-
-        // DISQUS
         var disqus_config = function () { 
             this.page.url = window.location.href; 
             this.page.identifier = 'ulukmanapo_fan_page'; 
