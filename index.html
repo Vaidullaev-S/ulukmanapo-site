@@ -21,19 +21,18 @@
         audio { width: 100%; height: 30px; margin-bottom: 10px; filter: sepia(20%) hue-rotate(10deg); }
         .like-btn { background: none; border: 1px solid #ff9000; color: #ff9000; padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: 0.3s; font-size: 12px; }
         .like-btn.active { background: #ff9000; color: #fff; }
-        .fh5co-blog { margin-bottom: 40px; border: 1px solid #f0f0f0; transition: 0.3s; background: #fff; }
-        .fh5co-blog:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        #fh5co-consult { background: #fdfdfd; padding: 50px 0; }
-        .fh5co-social-icons { padding: 0; margin: 0; }
-        .fh5co-social-icons li { display: inline-block; list-style: none; }
+        .timeline-img { width: 100%; border-radius: 8px; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .fh5co-social-icons { padding: 0; margin: 0; list-style: none; }
+        .fh5co-social-icons li { display: inline-block; margin: 0 10px; }
     </style>
     <script src="js/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
+        
     <div class="fh5co-loader"></div>
-    <div id="page">
     
-    <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/ulukmanapo.jpg);">
+    <div id="page"> 
+    <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/ulukmanapo.jpg);" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -42,7 +41,7 @@
                         <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
                             <div class="profile-thumb" style="background: url(images/996.webp);"></div>
                             <h1><span>Ulukmanapo</span></h1>
-                            <h3><span>артист • музыкант</span></h3>
+                            <h3><span>музыкант, рэпер</span></h3>
                         </div>
                     </div>
                 </div>
@@ -53,75 +52,100 @@
     <div id="fh5co-about" class="animate-box">
         <div class="container">
             <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Обо мне</h2>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <ul class="info">
-                        <li><span class="first-block">Имя:</span><span class="second-block">Улукман</span></li>
+                        <li><span class="first-block">Полное имя:</span><span class="second-block">Улукман Осмоналиев</span></li>
                         <li><span class="first-block">Город:</span><span class="second-block">Бишкек</span></li>
                         <li><span class="first-block">Instagram:</span><span class="second-block"><a href="https://www.instagram.com/ulukmanapo/" target="_blank" style="color: #ff9000;">@ulukmanapo</a></span></li>
+                        <li><span class="first-block">Возраст:</span><span class="second-block">33 года</span></li>
+                        <li><span class="first-block">Дата рождения:</span><span class="second-block">18.09.1992</span></li>
                     </ul>
                 </div>
                 <div class="col-md-8">
                     <h2>Биография</h2>
-                    <p>Ulukmanapo — яркий представитель кыргызской хип-хоп сцены. Его музыка сочетает в себе искренность улиц, мощный вайб и лиричность, которая находит отклик в сердцах миллионов слушателей по всему СНГ.</p>
+                    <p>Улукман Осмоналиев, выступающий под псевдонимом Ulukmanapo — один из самых выразительных голосов Центральной Азии. Его творчество — это сплав уличной лирики Бишкека, агрессивного флоу и мелодичности.</p>
+                    <p>Сольная карьера стартовала в 2016 году. Музыкант быстро нашел свой уникальный звук, сочетая эстетику уличной жизни с глубокими чувствами. Прорыв случился в 2019 году после выхода трека «Не сегодня / Семьдесят пятый».</p>
                 </div>
             </div>
         </div>
     </div>
 
-   <div id="fh5co-resume" class="fh5co-bg-color">
-    <div class="container">
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2>Популярные альбомы</h2>
+    <div id="fh5co-resume" class="fh5co-bg-color">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Дискография</h2>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="timeline">
-                    <li class="animate-box timeline-unverted">
-                        <div class="timeline-badge" style="background-image:url(images/CrockoLaco.webp); background-size: cover;"></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h3 class="timeline-title">Crocko Laco</h3>
-                                <span class="company">Альбом — 2021</span>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="timeline">
+                        <li class="animate-box timeline-unverted">
+                            <div class="timeline-badge"><i class="icon-music2"></i></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"><h3 class="timeline-title">2019 — Начало хитов</h3></div>
+                                <div class="timeline-body">
+                                    <p>«Хотела делать», «Кружит вайб».</p>
+                                    <img src="images/998.webp" class="timeline-img">
+                                </div>
                             </div>
-                            <div class="timeline-body">
-                                <img src="images/CrockoLaco.webp" alt="Crocko Laco" style="width: 100%; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                                <p>Культовый релиз, ставший классикой современного хип-хопа в регионе.</p>
+                        </li>
+                        <li class="timeline-inverted animate-box">
+                            <div class="timeline-badge"><i class="icon-music2"></i></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"><h3 class="timeline-title">2021 — Эра Crocko Laco</h3></div>
+                                <div class="timeline-body">
+                                    <p>«Так и понимай», «ОЧЕРК», альбом «Crocko Laco».</p>
+                                    <img src="images/CrockoLaco.webp" class="timeline-img">
+                                </div>
                             </div>
-                        </div>
-                    </li>
-
-                    <li class="timeline-inverted animate-box">
-                        <div class="timeline-badge" style="background-image:url(images/998.webp); background-size: cover;"></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h3 class="timeline-title">Мактуб</h3>
-                                <span class="company">Альбом — 2023</span>
+                        </li>
+                        <li class="animate-box timeline-unverted">
+                            <div class="timeline-badge"><i class="icon-music2"></i></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"><h3 class="timeline-title">2023 — Мактуб</h3></div>
+                                <div class="timeline-body">
+                                    <p>Релиз концептуального альбома «Мактуб» и сингла «Миледи».</p>
+                                    <img src="images/ulukман2.webp" class="timeline-img">
+                                </div>
                             </div>
-                            <div class="timeline-body">
-                                <img src="images/998.webp" alt="Мактуб" style="width: 100%; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                                <p>Концептуальная работа с глубоким смыслом и фирменным звучанием.</p>
+                        </li>
+                        <li class="timeline-inverted animate-box">
+                            <div class="timeline-badge"><i class="icon-music2"></i></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"><h3 class="timeline-title">2025 — Новое время</h3></div>
+                                <div class="timeline-body">
+                                    <p>«Молодость», «Рядом», «Керексиң Мага».</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
     <div id="fh5co-blog">
         <div class="container">
-            <div class="row animate-box"><div class="col-md-8 col-md-offset-2 text-center fh5co-heading"><h2>Популярные треки</h2></div></div>
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Популярные треки</h2>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="fh5co-blog animate-box">
                         <a href="#" class="blog-bg" style="background-image: url(images/998.webp);"></a>
                         <div class="blog-text">
                             <h3>Okey-Okey</h3>
-                            <div class="lyrics-scroll"><p>Мои пути были пустыми...<br>Теперь воздвиг свой храм как Сулейман в пустыне...<br>Всевышний моя скала...<br>Моя молитва спасает меня от всяческого зла.</p></div>
+                            <div class="lyrics-scroll"><p>Всевышний моя скала... Моя молитва спасает меня от всяческого зла.</p></div>
                             <audio controls><source src="music/okey_okey.mp3" type="audio/mpeg"></audio>
-                            <button class="like-btn" onclick="toggleLike('song1')" id="btn-song1"><i class="icon-heart2"></i> <span id="count-song1">0</span></button>
+                            <button class="like-btn" onclick="toggleLike('song1')" id="btn-song1"><i class="icon-heart2"></i> <span id="count-song1">249</span></button>
                         </div> 
                     </div>
                 </div>
@@ -130,9 +154,9 @@
                         <a href="#" class="blog-bg" style="background-image: url(images/дензл.webp);"></a>
                         <div class="blog-text">
                             <h3>Denzel W</h3>
-                            <div class="lyrics-scroll"><p>Такой же опасный как Дензел...<br>Лечу на мерседес бензе...<br>Стреляет очередной бэнгер...<br>Такой же опасный как Дензел.</p></div>
+                            <div class="lyrics-scroll"><p>Такой же опасный как Дензел... Лечу на мерседес бензе.</p></div>
                             <audio controls><source src="music/denzel_w.mp3" type="audio/mpeg"></audio>
-                            <button class="like-btn" onclick="toggleLike('song2')" id="btn-song2"><i class="icon-heart2"></i> <span id="count-song2">0</span></button>
+                            <button class="like-btn" onclick="toggleLike('song2')" id="btn-song2"><i class="icon-heart2"></i> <span id="count-song2">180</span></button>
                         </div> 
                     </div>
                 </div>
@@ -141,9 +165,9 @@
                         <a href="#" class="blog-bg" style="background-image: url(images/CrockoLaco.webp);"></a>
                         <div class="blog-text">
                             <h3>Crocko Laco</h3>
-                            <div class="lyrics-scroll"><p>Запаниковал, но я подумал о матери...<br>Мне нужно было выбраться...<br>У меня было много времени на размышление...</p></div>
+                            <div class="lyrics-scroll"><p>Район — это яма, пацы решают, как из неё вылезти...</p></div>
                             <audio controls><source src="music/crocko_laco.mp3" type="audio/mpeg"></audio>
-                            <button class="like-btn" onclick="toggleLike('song3')" id="btn-song3"><i class="icon-heart2"></i> <span id="count-song3">0</span></button>
+                            <button class="like-btn" onclick="toggleLike('song3')" id="btn-song3"><i class="icon-heart2"></i> <span id="count-song3">310</span></button>
                         </div> 
                     </div>
                 </div>
@@ -151,12 +175,39 @@
         </div>
     </div>
 
-    <div id="fh5co-consult">
+    <div id="fh5co-work" class="fh5co-bg-dark">
         <div class="container">
-            <div class="row animate-box"><div class="col-md-8 col-md-offset-2 text-center fh5co-heading"><h2>Обсуждение</h2></div></div>
             <div class="row animate-box">
-                <div class="col-md-10 col-md-offset-1" style="background:#fff; padding:20px; border-radius:8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                    <div id="disqus_thread"></div>
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Мои фото</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 text-center col-padding animate-box">
+                    <a href="#" class="work" style="background-image: url(images/996.webp);"></a>
+                </div>
+                <div class="col-md-3 text-center col-padding animate-box">
+                    <a href="#" class="work" style="background-image: url(images/ulukmanapo.jpg);"></a>
+                </div>
+                <div class="col-md-3 text-center col-padding animate-box">
+                    <a href="#" class="work" style="background-image: url(images/997.webp);"></a>
+                </div>
+                <div class="col-md-3 text-center col-padding animate-box">
+                    <a href="#" class="work" style="background-image: url(images/улукман2.webp);"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fh5co-started" class="fh5co-cover" style="background-image:url(images/ulukmanapo.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Интересные факты</h2>
+                    <p>1. Осмоналиев пишет тексты самостоятельно.</p>
+                    <p>2. В 2020 году исполнил главную роль в фильме «Молот».</p>
+                    <p>3. Выделяет Мирбека Атабекова и Jax среди кыргызской сцены.</p>
                 </div>
             </div>
         </div>
@@ -169,13 +220,9 @@
                     <h2>Следи за артистом</h2>
                     <ul class="fh5co-social-icons">
                         <li><a href="https://www.instagram.com/ulukmanapo/" target="_blank"><i class="icon-instagram" style="font-size: 30px; color: #ff9000;"></i></a></li>
-                        <li style="margin-left: 20px;"><a href="https://www.youtube.com/@Ulukmanapo" target="_blank"><i class="icon-youtube" style="font-size: 30px; color: #ff9000;"></i></a></li>
+                        <li><a href="https://www.youtube.com/@Ulukmanapo" target="_blank"><i class="icon-youtube" style="font-size: 30px; color: #ff9000;"></i></a></li>
                     </ul>
-                </div>
-            </div>
-            <div class="row copyright">
-                <div class="col-md-12 text-center">
-                    <p><small>&copy; 2026 Vaidullaev. Сделано для фанатов.</small></p>
+                    <p><small>&copy; 2026 Vaidullaev. Фанатский ресурс.</small></p>
                 </div>
             </div>
         </div>
@@ -191,33 +238,10 @@
     <script>
         function toggleLike(id) {
             let countSpan = document.getElementById('count-' + id);
-            let btn = document.getElementById('btn-' + id);
-            let likes = parseInt(localStorage.getItem(id)) || 0;
-            let active = localStorage.getItem(id + '_active') === 'true';
-            if (!active) { likes++; localStorage.setItem(id + '_active', 'true'); btn.classList.add('active'); }
-            else { likes--; localStorage.setItem(id + '_active', 'false'); btn.classList.remove('active'); }
-            localStorage.setItem(id, likes); countSpan.innerText = likes;
+            let likes = parseInt(countSpan.innerText);
+            countSpan.innerText = likes + 1;
+            document.getElementById('btn-' + id).classList.add('active');
         }
-
-        window.onload = function() {
-            ['song1', 'song2', 'song3'].forEach(id => {
-                let saved = localStorage.getItem(id) || Math.floor(Math.random() * 500 + 100);
-                if (!localStorage.getItem(id)) localStorage.setItem(id, saved);
-                document.getElementById('count-' + id).innerText = saved;
-                if (localStorage.getItem(id + '_active') === 'true') document.getElementById('btn-' + id).classList.add('active');
-            });
-        };
-
-        var disqus_config = function () { 
-            this.page.url = window.location.href; 
-            this.page.identifier = 'ulukmanapo_fan_page'; 
-        };
-        (function() { 
-            var d = document, s = d.createElement('script'); 
-            s.src = 'https://ulukmanapo-fan-site.disqus.com/embed.js'; 
-            s.setAttribute('data-timestamp', +new Date()); 
-            (d.head || d.body).appendChild(s); 
-        })();
     </script>
     </body>
 </html>
