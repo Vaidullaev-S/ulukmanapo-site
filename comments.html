@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Комментарии к песне — Ulukmanapo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #f9f9f9; padding-top: 50px; }
+        .comments-container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto 50px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: #333; text-decoration: none; font-weight: bold; margin-bottom: 20px; transition: 0.3s; }
+        .back-btn:hover { color: #FF9000; }
+        
+        .local-comments { text-align: left; }
+        .local-comments h4 { margin-top: 0; margin-bottom: 5px; font-weight: bold; font-size: 24px; color: #333; }
+        .song-title { color: #FF9000; font-size: 18px; margin-bottom: 30px; }
+        
+        .comment-form { margin-bottom: 30px; display: flex; flex-direction: column; gap: 10px; }
+        .comment-form input, .comment-form textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 14px;
+            transition: border-color 0.3s; background: #fdfdfd;
+        }
+        .comment-form input:focus, .comment-form textarea:focus { border-color: #FF9000; outline: none; background: #fff; }
+        .comment-form button {
+            align-self: flex-start; background: #FF9000; border: none; color: white; 
+            padding: 10px 25px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-weight: bold;
+        }
+        .comment-form button:hover { background: #e68200; transform: translateY(-2px); }
+        .comments-list { display: flex; flex-direction: column; gap: 15px; }
+        .comment-item { background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #FF9000; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .comment-item h5 { margin: 0 0 5px 0; font-size: 16px; color: #333; font-weight: bold; }
+        .comment-item p { margin: 0; font-size: 14px; color: #555; line-height: 1.5; }
+        .comment-item .date { font-size: 12px; color: #999; margin-top: 8px; display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Назад к песням</a>
+        <div class="comments-container">
+            <div class="local-comments">
+                <h4>Комментарии</h4>
+                <div class="song-title" id="songTitleDisplay">Загрузка...</div>
+                
+                <div class="comment-form">
+                    <input type="text" id="commentName" placeholder="Ваше имя" required>
+                    <textarea id="commentText" rows="3" placeholder="Что вы думаете об этом треке?" required></textarea>
+                    <button id="submitComment">Отправить</button>
+                </div>
+                
+                <div class="comments-list" id="commentsList">
+                    <!-- Комментарии -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var params = new URLSearchParams(window.location.search);
+            var songId = params.get('song');
+            var songNames = {
+                'okey_okey': 'Okey-Okey',
+                'denzel_w': 'Denzel W',
+                'crocko_laco': 'Crocko Laco',
+                'plotno': 'Плотно',
+                'miledi': 'Миледи',
+                'hotela_delat': 'Хотела делать',
+                'ocherk': 'Очерк',
+                'kruzhit_vaib': 'Кружит вайб'
+            };
+
+            var songTitleDisplay = document.getElementById('songTitleDisplay');
+            if (songId && songNames[songId]) {
+                songTitleDisplay.textContent = 'Трек: ' + songNames[songId];
+            } else {
+                songTitleDisplay.textContent = 'Трек не найден';
+                return;
+            }
+
+            var commentsList = document.getElementById('commentsList');
+            var submitBtn = document.getElementById('submitComment');
+            var nameInput = document.getElementById('commentName');
+            var textInput = document.getElementById('commentText');
+
+            var allComments = JSON.parse(localStorage.getItem('ulukmanapo_song_comments'));
+            
+            // Генерация комментариев, если их нет
+            if (!allComments || !allComments['okey_okey'] || allComments['okey_okey'].length < 15) {
+                allComments = {};
+                var firstNames = ["Азамат", "Aigerim", "Ilgiz", "Samira", "Rustam", "Nurbek", "Zarina", "Diana", "Bektur", "Aika", "Kubat", "Ermek", "Sanjar", "Alina", "Тимур", "Айдана", "Кайрат", "Алия", "Эмир", "Бермет", "Арсен", "Мадина", "Данияр", "Салтанат", "Uluk", "Timur996", "Azat", "Nura", "Bek", "Aizada", "Elya"];
+                
+                var genericGood = [
+                    "Трек просто пушка! 🔥", "Слушаю на повторе каждый день.", "Улукманапо как всегда на высоте!",
+                    "Лучший бит, который я слышал за последний месяц.", "Этот вайб просто нереален...", 
+                    "Разнос! Жду новых релизов.", "Скинул всем друзьям, всем зашло.", "Шедевр, как и всегда.",
+                    "Это легендарно. 10 из 10.", "Кыргызский хип-хоп жив благодаря таким трекам.",
+                    "Слушаю в машине — кайф!", "Очень круто, респект из Бишкека!", "Текст очень сильный, братан.",
+                    "Наконец-то нашел песню, которая не надоедает.", "Отвал башки, спасибо за творчество!",
+                    "Просто разъеб! 🔥🔥🔥", "Лучший в своем жанре.", "Мурашки по коже от этого трека...",
+                    "Дайте мне стереть память, чтобы послушать это заново.", "Топовый флоу!"
+                ];
+
+                var songSpecificContexts = {
+                    'okey_okey': ["Окей-окей, мы делаем грязь!", "Гимн для моих будней.", "Бит просто мясо, окей-окей!"],
+                    'denzel_w': ["Скорость, адреналин, Дензел!", "Опасный как Дензел Вашингтон 😎", "Качает невероятно!"],
+                    'crocko_laco': ["Алмаз бишкекского рэпа.", "Этот хук застрял в голове.", "Бренд крокодила на груди 🐊"],
+                    'plotno': ["Работаем плотно 24/7.", "Строчки как пулеметная очередь.", "Мотивация на весь день!"],
+                    'miledi': ["Для моей миледи...", "Такая романтичная💔", "Лучший трек для медляка с девушкой."],
+                    'hotela_delat': ["Ностальгия...", "Трек с которого всё началось.", "Она хотела делать ветер... Эх."],
+                    'ocherk': ["Очень жизненные слова.", "Глубокий смысл, заставляет задуматься.", "Рифмы пробивают насквозь."],
+                    'kruzhit_vaib': ["Летаем выше крыш!", "Ночная трасса и этот трек...", "Идеально для вечерних покатушек."]
+                };
+
+                Object.keys(songSpecificContexts).forEach(function(songKey) {
+                    var songArray = [];
+                    var templates = genericGood.concat(songSpecificContexts[songKey]);
+                    var count = Math.floor(Math.random() * 11) + 20; // 20-30
+                    for (var i = 0; i < count; i++) {
+                        var rName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                        var rText = templates[Math.floor(Math.random() * templates.length)];
+                        var rDay = Math.floor(Math.random() * 28) + 1;
+                        var rMonth = ['янв', 'фев', 'мар', 'апр'][Math.floor(Math.random() * 4)];
+                        var rDate = rDay + " " + rMonth + " 2026, " + (Math.floor(Math.random()*14)+10) + ":" + (Math.floor(Math.random()*50)+10);
+                        
+                        songArray.push({name: rName, text: rText, date: rDate});
+                    }
+                    allComments[songKey] = songArray;
+                });
+                
+                localStorage.setItem('ulukmanapo_song_comments', JSON.stringify(allComments));
+            }
+
+            if (!allComments[songId]) {
+                allComments[songId] = [];
+            }
+            var localComments = allComments[songId];
+
+            function htmlEscape(str) {
+                return str.replace(/[&<>'"]/g, function(tag) {
+                    var charsToReplace = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+                    return charsToReplace[tag] || tag;
+                });
+            }
+
+            function renderComments() {
+                commentsList.innerHTML = '';
+                if (localComments.length === 0) {
+                    commentsList.innerHTML = '<p style="color:#888;">Пока нет отзывов для этого трека. Станьте первым!</p>';
+                }
+                localComments.slice().reverse().forEach(function(c) {
+                    var div = document.createElement('div');
+                    div.className = 'comment-item';
+                    div.innerHTML = '<h5>' + htmlEscape(c.name) + '</h5>' +
+                                    '<p>' + htmlEscape(c.text) + '</p>' +
+                                    '<span class="date">' + htmlEscape(c.date) + '</span>';
+                    commentsList.appendChild(div);
+                });
+            }
+
+            renderComments();
+            
+            submitBtn.addEventListener('click', function() {
+                var name = nameInput.value.trim();
+                var text = textInput.value.trim();
+                if (name && text) {
+                    var date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit' });
+                    localComments.push({ name: name, text: text, date: date });
+                    
+                    allComments[songId] = localComments;
+                    localStorage.setItem('ulukmanapo_song_comments', JSON.stringify(allComments));
+                    
+                    // Обновляем статистику тоже
+                    var stats = JSON.parse(localStorage.getItem('ulukmanapo_stats') || '{}');
+                    if (stats[songId]) {
+                        stats[songId].comments = localComments.length;
+                        localStorage.setItem('ulukmanapo_stats', JSON.stringify(stats));
+                    }
+                    
+                    nameInput.value = '';
+                    textInput.value = '';
+                    renderComments();
+                } else {
+                    alert('Пожалуйста, заполните все поля!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

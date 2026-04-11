@@ -1,213 +1,618 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ulukmanapo — Официальный сайт</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        .lyrics-scroll { height: 120px; overflow-y: auto; margin-bottom: 15px; font-size: 13px; color: #777; padding: 10px; background: #f9f9f9; border-radius: 5px; }
-        .audio-player { width: 100%; margin-top: 10px; }
-        .timeline-img { width: 100%; border-radius: 8px; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .comment-box { background: #fff; padding: 30px; border-radius: 8px; margin-top: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .lyrics-scroll {
+            height: 120px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #777;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .audio-player {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .timeline-img {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .sub-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 9999;
+            display: none; justify-content: center; align-items: center;
+        }
+        .sub-modal {
+            background: #fff; padding: 30px; border-radius: 10px;
+            text-align: center; max-width: 400px; width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .sub-modal h3 { margin-top: 0; color: #333; margin-bottom: 15px; }
+        .sub-modal p { color: #666; margin-bottom: 20px; }
+        .btn-subscribe {
+            background: #FF9000; color: #fff; border: none;
+            padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-subscribe:hover { background: #e68200; color: #fff; }
+        .btn-close-modal {
+            background: #ccc; color: #333; border: none;
+            padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;
+            margin-top: 10px; margin-left: 10px;
+        }
+
+        /* Премиум стили для соцсетей */
+        .fh5co-social-icons li a {
+            display: inline-flex; justify-content: center; align-items: center;
+            width: 50px; height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff; font-size: 22px; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .fh5co-social-icons li a:hover {
+            background: #FF9000;
+            color: #fff; transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 144, 0, 0.5);
+            border-color: #FF9000;
+        }
+
+        /* Кнопки соцсетей снизу */
+        .btn-social {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 15px 35px; margin: 10px; font-size: 16px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; color: #fff !important; text-decoration: none; border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden; z-index: 1; border: none !important;
+        }
+        .btn-social i { margin-right: 10px; font-size: 24px; }
+        .btn-social.youtube {
+            background: linear-gradient(135deg, #ff0000 0%, #b31217 100%);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+        }
+        .btn-social.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
+        }
+        .btn-social:hover {
+            transform: translateY(-8px) scale(1.05); color: #fff;
+        }
+        .btn-social.youtube:hover { box-shadow: 0 15px 30px rgba(255, 0, 0, 0.5); }
+        .btn-social.instagram:hover { box-shadow: 0 15px 30px rgba(220, 39, 67, 0.5); }
+        .btn-social::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.2); transition: all 0.5s ease; z-index: -1; transform: skewX(-15deg);
+        }
+        .btn-social:hover::before { left: 100%; }
+
+        /* Статистика песен (лайки, прослушивания, комментарии) */
+        .song-stats {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #888;
+        }
+
+        .song-stats .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .song-stats .stat-item:hover, .song-stats .stat-item a:hover {
+            color: #FF9000;
+        }
+
+        .song-stats .stat-item:active {
+            transform: scale(0.95);
+        }
+
+        .song-stats .stat-item a {
+            color: inherit;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .song-stats .like-btn.liked i {
+            color: #e74c3c;
+            animation: heartPulse 0.3s forwards;
+        }
+        
+        .song-stats .like-btn.liked {
+            color: #e74c3c;
+        }
+
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Локальные комментарии */
+        .local-comments { text-align: left; }
+        .local-comments h4 { margin-top: 0; margin-bottom: 20px; font-weight: bold; }
+        .comment-form { margin-bottom: 30px; display: flex; flex-direction: column; gap: 10px; }
+        .comment-form input, .comment-form textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 14px;
+            transition: border-color 0.3s;
+            background: #fdfdfd;
+        }
+        .comment-form input:focus, .comment-form textarea:focus {
+            border-color: #FF9000; outline: none; background: #fff;
+        }
+        .comment-form button {
+            align-self: flex-start; background: #FF9000; border: none; color: white; 
+            padding: 10px 25px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-weight: bold;
+        }
+        .comment-form button:hover { background: #e68200; transform: translateY(-2px); }
+        .comments-list { display: flex; flex-direction: column; gap: 15px; }
+        .comment-item { background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #FF9000; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .comment-item h5 { margin: 0 0 5px 0; font-size: 16px; color: #333; font-weight: bold; }
+        .comment-item p { margin: 0; font-size: 14px; color: #555; line-height: 1.5; }
+        .comment-item .date { font-size: 12px; color: #999; margin-top: 8px; display: block; }
     </style>
     <script src="js/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body>
-    
+</head>
+
+<body>
+
     <div id="page">
-    <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/ulukmanapo.jpg);">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <div class="display-t js-fullheight">
-                        <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-                            <div class="profile-thumb" style="background: url(images/996.webp);"></div>
-                            <h1><span>Ulukmanapo</span></h1>
-                            <h3><span>Кыргызский рэп-исполнитель / Хип-хоп артист</span></h3>
-                            <p>
+        <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner"
+            style="background-image:url(images/ulukmanapo.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="display-t js-fullheight">
+                            <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
+                                <div class="profile-thumb" style="background: url(images/996.webp);"></div>
+                                <h1><span>Ulukmanapo</span></h1>
+                                <h3><span>Кыргызский рэп-исполнитель / Хип-хоп артист</span></h3>
+                                <p>
                                 <ul class="fh5co-social-icons">
-                                    <li><a href="https://www.youtube.com/@Ulukmanapo" target="_blank"><i class="icon-youtube"></i></a></li>
-                                    <li><a href="https://instagram.com/ulukmanapo" target="_blank"><i class="icon-instagram"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@Ulukmanapo" target="_blank"><i
+                                                class="fa-brands fa-youtube"></i></a></li>
+                                    <li><a href="https://instagram.com/ulukmanapo" target="_blank"><i
+                                                class="fa-brands fa-instagram"></i></a></li>
                                 </ul>
-                            </p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="fh5co-about" class="animate-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="info">
+                            <li><span class="first-block">Имя:</span><span class="second-block">Улукман
+                                    Осмоналиев</span></li>
+                            <li><span class="first-block">Возраст:</span><span class="second-block">33 года</span></li>
+                            <li><span class="first-block">Город:</span><span class="second-block">Бишкек,
+                                    Кыргызстан</span></li>
+                            <li><span class="first-block">Жанр:</span><span class="second-block">Hip-Hop / Rap</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <h2>Полная Биография</h2>
+                        <p>Ulukmanapo — один из самых влиятельных представителей хип-хопа в Центральной Азии. Его музыка
+                            — это уникальное сочетание жесткого уличного флоу и глубокой лирики, пропитанной «азиатской
+                            эстетикой».</p>
+                        <p>Начиная с 2016 года, Улукман прошел путь от локальных площадок до статуса легенды, чей голос
+                            узнают во всем СНГ. Он стал символом Бишкека, прославив код «996» в своих треках. Его тексты
+                            — это история о чести, верности своим принципам и непростом пути к успеху.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="fh5co-resume" class="fh5co-bg-color">
+            <div class="container">
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Дискография</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="timeline">
+                            <li class="animate-box timeline-unverted">
+                                <div class="timeline-badge"
+                                    style="background-image:url(images/998.webp); background-size: cover;"></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">2019 — Начало пути</h3>
+                                    </div>
+                                    <div class="timeline-body"><img src="images/998.webp" class="timeline-img">
+                                        <p>Первые вирусные хиты: «Хотела делать», «Кружит вайб».</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted animate-box">
+                                <div class="timeline-badge"
+                                    style="background-image:url(images/996.webp); background-size: cover;"></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">2020 — Код доступа 996</h3>
+                                    </div>
+                                    <div class="timeline-body"><img src="images/996.webp" class="timeline-img">
+                                        <p>Альбом, ставший классикой: «Плотно», «Выстрел в пустоту».</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="animate-box timeline-unverted">
+                                <div class="timeline-badge"
+                                    style="background-image:url(images/CrockoLaco.webp); background-size: cover;"></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">2021 — Crocko Laco</h3>
+                                    </div>
+                                    <div class="timeline-body"><img src="images/CrockoLaco.webp" class="timeline-img">
+                                        <p>Выход знакового альбома и сингла «Очерк».</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted animate-box">
+                                <div class="timeline-badge"
+                                    style="background-image:url(images/997.webp); background-size: cover;"></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">2022 — Расстояние</h3>
+                                    </div>
+                                    <div class="timeline-body"><img src="images/997.webp" class="timeline-img">
+                                        <p>Лирические релизы «О тебе» и новые хиты.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="animate-box timeline-unverted">
+                                <div class="timeline-badge"
+                                    style="background-image:url(images/улукман2.webp); background-size: cover;"></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">2023 — Мактуб</h3>
+                                    </div>
+                                    <div class="timeline-body"><img src="images/улукман2.webp" class="timeline-img">
+                                        <p>Альбом «Мактуб» и хит «Миледи».</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted animate-box">
+                                <div class="timeline-badge"
+                                    style="background-image:url(images/ulukmanapo.jpg); background-size: cover;"></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">2025 — Молодость</h3>
+                                    </div>
+                                    <div class="timeline-body"><img src="images/ulukmanapo.jpg" class="timeline-img">
+                                        <p>Новейшие треки: «Рядом», «Керексиң Мага».</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="fh5co-blog">
+            <div class="container">
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Популярные треки</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/998.webp);"></div>
+                            <div class="blog-text">
+                                <h3>Okey-Okey</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Мои пути были пустыми, но я верил в каждый свой шаг.<br>
+                                        Город спит под огнями густыми, я здесь, и я не дам маху...</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="okey_okey">
+                                    <source src="music/okey_okey.mp3" type="audio/mpeg">
+                                    Ваш браузер не поддерживает аудио.
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="okey_okey">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/997.webp);"></div>
+                            <div class="blog-text">
+                                <h3>Denzel W</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Такой же опасный как Дензел...<br>
+                                        В каждом слове вес, в каждом взгляде — правда.<br>
+                                        Мы забираем своё, нам не нужна награда.</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="denzel_w">
+                                    <source src="music/denzel_w.mp3" type="audio/mpeg">
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="denzel_w">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/CrockoLaco.webp);"></div>
+                            <div class="blog-text">
+                                <h3>Crocko Laco</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Кто-то хотел, чтобы я убил себя, но я выжил...<br>
+                                        Чтобы стать сильнее. Эта жизнь — игра, и я в ней профи.</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="crocko_laco">
+                                    <source src="music/crocko_laco.mp3" type="audio/mpeg">
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="crocko_laco">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/996.webp);"></div>
+                            <div class="blog-text">
+                                <h3>Плотно</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Всё идёт по плану, мы работаем плотно...<br>
+                                        Улицы не спят, мы забираем своё.<br>
+                                        Делаем грязь, но мысли чисты.</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="plotno">
+                                    <source src="music/Плотно.mp3" type="audio/mpeg">
+                                    Ваш браузер не поддерживает аудио.
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="plotno">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/улукман2.webp);"></div>
+                            <div class="blog-text">
+                                <h3>Миледи</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Она моя миледи, в этом мире леди...<br>
+                                        С ней забываю обо всём, она мой свет.<br>
+                                        Танцуй для меня, пока мы здесь вдвоём.</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="miledi">
+                                    <source src="music/Миледи.mp3" type="audio/mpeg">
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="miledi">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/995.webp);"></div>
+                            <div class="blog-text">
+                                <h3>Хотела делать</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Ты хотела делать ветер, но подняла бурю...<br>
+                                        Мы с тобой на разных берегах, но я помню.<br>
+                                        Каждый твой взгляд был как удар изнутри.</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="hotela_delat">
+                                    <source src="music/Хотела делать.mp3" type="audio/mpeg">
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="hotela_delat">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/дензл.webp);"></div>
+                            <div class="blog-text">
+                                <h3>Очерк</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Пишу этот очерк на рваных листах...<br>
+                                        Моя жизнь как сценарий, где каждый шаг — риск.<br>
+                                        Не верю в слова, верю только в поступки.</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="ocherk">
+                                    <source src="music/ОЧЕРК.mp3" type="audio/mpeg">
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="ocherk">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog-bg" style="background-image: url(images/ulukmanapo.jpg);"></div>
+                            <div class="blog-text">
+                                <h3>Кружит вайб</h3>
+                                <div class="lyrics-scroll">
+                                    <p>Кружит вайб, мы летаем где-то выше крыш...<br>
+                                        Этот город наш, пока ты крепко спишь.<br>
+                                        Огни мелькают, мы идём до конца.</p>
+                                </div>
+                                <audio controls class="audio-player" data-song="kruzhit_vaib">
+                                    <source src="music/Кружит вайб.mp3" type="audio/mpeg">
+                                </audio>
+                                <div class="song-stats">
+                                    <span class="stat-item like-btn" data-song="kruzhit_vaib">
+                                        <i class="fa-regular fa-heart"></i> <span class="like-count">0</span>
+                                    </span>
+                                    <span class="stat-item play-stat">
+                                        <i class="fa-solid fa-headphones"></i> <span class="play-count">0</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <a href="#fh5co-consult"><i class="fa-regular fa-comment"></i> <span class="comment-count">0</span></a>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <div id="fh5co-about" class="animate-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <ul class="info">
-                        <li><span class="first-block">Имя:</span><span class="second-block">Улукман Осмоналиев</span></li>
-                        <li><span class="first-block">Возраст:</span><span class="second-block">33 года</span></li>
-                        <li><span class="first-block">Город:</span><span class="second-block">Бишкек, Кыргызстан</span></li>
-                        <li><span class="first-block">Жанр:</span><span class="second-block">Hip-Hop / Rap</span></li>
-                    </ul>
+        <div id="fh5co-consult">
+            <div class="container">
+                <div class="row animate-box text-center fh5co-heading">
+                    <h2>Обсуждение / Отзывы</h2>
                 </div>
-                <div class="col-md-8">
-                    <h2>Полная Биография</h2>
-                    <p>Ulukmanapo — один из самых влиятельных представителей хип-хопа в Центральной Азии. Его музыка — это уникальное сочетание жесткого уличного флоу и глубокой лирики, пропитанной «азиатской эстетикой».</p>
-                    <p>Начиная с 2016 года, Улукман прошел путь от локальных площадок до статуса легенды, чей голос узнают во всем СНГ. Он стал символом Бишкека, прославив код «996» в своих треках. Его тексты — это история о чести, верности своим принципам и непростом пути к успеху.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="fh5co-resume" class="fh5co-bg-color">
-        <div class="container">
-            <div class="row animate-box"><div class="col-md-8 col-md-offset-2 text-center fh5co-heading"><h2>Дискография</h2></div></div>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="timeline">
-                        <li class="animate-box timeline-unverted">
-                            <div class="timeline-badge" style="background-image:url(images/998.webp); background-size: cover;"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading"><h3 class="timeline-title">2019 — Начало пути</h3></div>
-                                <div class="timeline-body"><img src="images/998.webp" class="timeline-img"><p>Первые вирусные хиты: «Хотела делать», «Кружит вайб».</p></div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 animate-box">
+                        <div class="comment-box">
+                            <div class="local-comments" id="localCommentsSection">
+                                <h4>Оставьте свой отзыв</h4>
+                                <div class="comment-form">
+                                    <input type="text" id="commentName" placeholder="Ваше имя" required>
+                                    <textarea id="commentText" rows="3" placeholder="Что вы думаете о творчестве?" required></textarea>
+                                    <button id="submitComment">Отправить</button>
+                                </div>
+                                <div class="comments-list" id="commentsList">
+                                    <!-- Комментарии -->
+                                </div>
                             </div>
-                        </li>
-                        <li class="timeline-inverted animate-box">
-                            <div class="timeline-badge" style="background-image:url(images/996.webp); background-size: cover;"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading"><h3 class="timeline-title">2020 — Код доступа 996</h3></div>
-                                <div class="timeline-body"><img src="images/996.webp" class="timeline-img"><p>Альбом, ставший классикой: «Плотно», «Выстрел в пустоту».</p></div>
-                            </div>
-                        </li>
-                        <li class="animate-box timeline-unverted">
-                            <div class="timeline-badge" style="background-image:url(images/CrockoLaco.webp); background-size: cover;"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading"><h3 class="timeline-title">2021 — Crocko Laco</h3></div>
-                                <div class="timeline-body"><img src="images/CrockoLaco.webp" class="timeline-img"><p>Выход знакового альбома и сингла «Очерк».</p></div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted animate-box">
-                            <div class="timeline-badge" style="background-image:url(images/997.webp); background-size: cover;"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading"><h3 class="timeline-title">2022 — Расстояние</h3></div>
-                                <div class="timeline-body"><img src="images/997.webp" class="timeline-img"><p>Лирические релизы «О тебе» и новые хиты.</p></div>
-                            </div>
-                        </li>
-                        <li class="animate-box timeline-unverted">
-                            <div class="timeline-badge" style="background-image:url(images/улукман2.webp); background-size: cover;"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading"><h3 class="timeline-title">2023 — Мактуб</h3></div>
-                                <div class="timeline-body"><img src="images/улукман2.webp" class="timeline-img"><p>Альбом «Мактуб» и хит «Миледи».</p></div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted animate-box">
-                            <div class="timeline-badge" style="background-image:url(images/ulukmanapo.jpg); background-size: cover;"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading"><h3 class="timeline-title">2025 — Молодость</h3></div>
-                                <div class="timeline-body"><img src="images/ulukmanapo.jpg" class="timeline-img"><p>Новейшие треки: «Рядом», «Керексиң Мага».</p></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="fh5co-blog">
-        <div class="container">
-            <div class="row animate-box"><div class="col-md-8 col-md-offset-2 text-center fh5co-heading"><h2>Популярные треки</h2></div></div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="fh5co-blog animate-box">
-                        <div class="blog-bg" style="background-image: url(images/998.webp);"></div>
-                        <div class="blog-text">
-                            <h3>Okey-Okey</h3>
-                            <div class="lyrics-scroll">
-                                <p>Мои пути были пустыми, но я верил в каждый свой шаг.<br>
-                                Город спит под огнями густыми, я здесь, и я не дам маху...</p>
-                            </div>
-                            <audio controls class="audio-player">
-                                <source src="music/okey_okey.mp3" type="audio/mpeg">
-                                Ваш браузер не поддерживает аудио.
-                            </audio>
-                        </div> 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="fh5co-blog animate-box">
-                        <div class="blog-bg" style="background-image: url(images/997.webp);"></div>
-                        <div class="blog-text">
-                            <h3>Denzel W</h3>
-                            <div class="lyrics-scroll">
-                                <p>Такой же опасный как Дензел...<br>
-                                В каждом слове вес, в каждом взгляде — правда.<br>
-                                Мы забираем своё, нам не нужна награда.</p>
-                            </div>
-                            <audio controls class="audio-player">
-                                <source src="music/denzel_w.mp3" type="audio/mpeg">
-                            </audio>
-                        </div> 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="fh5co-blog animate-box">
-                        <div class="blog-bg" style="background-image: url(images/CrockoLaco.webp);"></div>
-                        <div class="blog-text">
-                            <h3>Crocko Laco</h3>
-                            <div class="lyrics-scroll">
-                                <p>Кто-то хотел, чтобы я убил себя, но я выжил...<br>
-                                Чтобы стать сильнее. Эта жизнь — игра, и я в ней профи.</p>
-                            </div>
-                            <audio controls class="audio-player">
-                                <source src="music/crocko_laco.mp3" type="audio/mpeg">
-                            </audio>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="fh5co-consult">
-        <div class="container">
-            <div class="row animate-box text-center fh5co-heading">
-                <h2>Обсуждение / Отзывы</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1 animate-box">
-                    <div class="comment-box">
-                        <div id="disqus_thread"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 
 
     <div id="fh5co-started" class="fh5co-bg-color">
         <div class="container">
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>Следи за Ulukmanapo</h2>
-                    <p>Подписывайся на официальные страницы, чтобы не пропустить новые релизы и клипы.</p>
+                    <h2 style="color: #333;">Следи за Ulukmanapo</h2>
+                    <p style="color: #666;">Подписывайся на официальные страницы, чтобы не пропустить новые релизы и клипы.</p>
                 </div>
             </div>
             <div class="row animate-box">
                 <div class="col-md-12 text-center">
                     <p>
-                        <a href="https://www.youtube.com/@Ulukmanapo" target="_blank" class="btn btn-primary btn-outline" style="margin: 10px; padding: 15px 30px;">
-                            <i class="icon-youtube"></i> YouTube Channel
+                        <a href="https://www.youtube.com/@Ulukmanapo" target="_blank"
+                            class="btn-social youtube">
+                            <i class="fa-brands fa-youtube"></i> YouTube
                         </a>
-                        <a href="https://www.instagram.com/ulukmanapo/" target="_blank" class="btn btn-primary btn-outline" style="margin: 10px; padding: 15px 30px;">
-                            <i class="icon-instagram"></i> Instagram Profile
+                        <a href="https://www.instagram.com/ulukmanapo/" target="_blank"
+                            class="btn-social instagram">
+                            <i class="fa-brands fa-instagram"></i> Instagram
                         </a>
                     </p>
                 </div>
@@ -217,33 +622,286 @@
 
     <footer id="fh5co-footer" role="contentinfo">
         ...
-    <footer id="fh5co-footer" role="contentinfo">
-        <div class="container">
-            <div class="row copyright">
-                <div class="col-md-12 text-center">
-                    <p><small>&copy; 2026 Vaidullaev. Сделано специально для фанатов Ulukmanapo.</small></p>
+        <footer id="fh5co-footer" role="contentinfo">
+            <div class="container">
+                <div class="row copyright">
+                    <div class="col-md-12 text-center">
+                        <p><small>&copy; 2026 Vaidullaev. Сделано специально для фанатов Ulukmanapo.</small></p>
+                    </div>
                 </div>
             </div>
+        </footer>
         </div>
-    </footer>
-    </div><div class="gototop js-top">
-        <a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
-    </div>
-    
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/main.js"></script>
+        
+        <div class="sub-modal-overlay" id="subModal">
+            <div class="sub-modal">
+                <h3>Оформить подписку</h3>
+                <p>Чтобы слушать треки Ulukmanapo прямо на сайте, необходимо оформить премиум-подписку!</p>
+                <button class="btn-subscribe" id="btnSubscribe">Подписаться (996 сом/мес)</button>
+                <button class="btn-close-modal" id="btnCloseSub">Отмена</button>
+            </div>
+        </div>
 
-    <script>
-        (function() { 
-            var d = document, s = d.createElement('script');
-            s.src = 'https://ulukmanapo-fan-site.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    </body>
+        <div class="gototop js-top">
+            <a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var commentsList = document.getElementById('commentsList');
+                var submitBtn = document.getElementById('submitComment');
+                var nameInput = document.getElementById('commentName');
+                var textInput = document.getElementById('commentText');
+
+                if (commentsList) {
+                    var localComments = JSON.parse(localStorage.getItem('ulukmanapo_comments') || '[]');
+
+                    function htmlEscape(str) {
+                        return str.replace(/[&<>'"]/g, function(tag) {
+                            var charsToReplace = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+                            return charsToReplace[tag] || tag;
+                        });
+                    }
+
+                    function renderComments() {
+                        commentsList.innerHTML = '';
+                        if (localComments.length === 0) {
+                            commentsList.innerHTML = '<p style="color:#888;">Пока нет отзывов. Станьте первым!</p>';
+                        }
+                        localComments.slice().reverse().forEach(function(c) {
+                            var div = document.createElement('div');
+                            div.className = 'comment-item';
+                            div.innerHTML = '<h5>' + htmlEscape(c.name) + '</h5>' +
+                                            '<p>' + htmlEscape(c.text) + '</p>' +
+                                            '<span class="date">' + htmlEscape(c.date) + '</span>';
+                            commentsList.appendChild(div);
+                        });
+                    }
+
+                    renderComments();
+                    
+                    submitBtn.addEventListener('click', function() {
+                        var name = nameInput.value.trim();
+                        var text = textInput.value.trim();
+                        if (name && text) {
+                            var date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit' });
+                            localComments.push({ name: name, text: text, date: date });
+                            localStorage.setItem('ulukmanapo_comments', JSON.stringify(localComments));
+                            nameInput.value = '';
+                            textInput.value = '';
+                            renderComments();
+                        } else {
+                            alert('Пожалуйста, заполните все поля!');
+                        }
+                    });
+                }
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var audios = document.querySelectorAll('audio');
+                var subModal = document.getElementById('subModal');
+                var btnSubscribe = document.getElementById('btnSubscribe');
+                var btnCloseSub = document.getElementById('btnCloseSub');
+                var currentAudio = null;
+
+                // Проверяем наличие подписки в localStorage
+                var isSubscribed = localStorage.getItem('ulukmanapo_subscribed') === 'true';
+
+                // --- Инициализация статистики песен и фейковых отзывов ---
+                var allComments = JSON.parse(localStorage.getItem('ulukmanapo_song_comments'));
+                // Если данные пустые или их слишком мало (старая версия), генерируем заново по 20-30 штук
+                if (!allComments || !allComments['okey_okey'] || allComments['okey_okey'].length < 15) {
+                    allComments = {};
+                    var firstNames = ["Азамат", "Aigerim", "Ilgiz", "Samira", "Rustam", "Nurbek", "Zarina", "Diana", "Bektur", "Aika", "Kubat", "Ermek", "Sanjar", "Alina", "Тимур", "Айдана", "Кайрат", "Алия", "Эмир", "Бермет", "Арсен", "Мадина", "Данияр", "Салтанат", "Uluk", "Timur996", "Azat", "Nura", "Bek", "Aizada", "Elya"];
+                    
+                    var genericGood = [
+                        "Трек просто пушка! 🔥", "Слушаю на повторе каждый день.", "Улукманапо как всегда на высоте!",
+                        "Лучший бит, который я слышал за последний месяц.", "Этот вайб просто нереален...", 
+                        "Разнос! Жду новых релизов.", "Скинул всем друзьям, всем зашло.", "Шедевр, как и всегда.",
+                        "Это легендарно. 10 из 10.", "Кыргызский хип-хоп жив благодаря таким трекам.",
+                        "Слушаю в машине — кайф!", "Очень круто, респект из Бишкека!", "Текст очень сильный, братан.",
+                        "Наконец-то нашел песню, которая не надоедает.", "Отвал башки, спасибо за творчество!",
+                        "Просто разъеб! 🔥🔥🔥", "Лучший в своем жанре.", "Мурашки по коже от этого трека...",
+                        "Дайте мне стереть память, чтобы послушать это заново.", "Топовый флоу!"
+                    ];
+
+                    var songSpecificContexts = {
+                        'okey_okey': ["Окей-окей, мы делаем грязь!", "Гимн для моих будней.", "Бит просто мясо, окей-окей!"],
+                        'denzel_w': ["Скорость, адреналин, Дензел!", "Опасный как Дензел Вашингтон 😎", "Качает невероятно!"],
+                        'crocko_laco': ["Алмаз бишкекского рэпа.", "Этот хук застрял в голове.", "Бренд крокодила на груди 🐊"],
+                        'plotno': ["Работаем плотно 24/7.", "Строчки как пулеметная очередь.", "Мотивация на весь день!"],
+                        'miledi': ["Для моей миледи...", "Такая романтичная💔", "Лучший трек для медляка с девушкой."],
+                        'hotela_delat': ["Ностальгия...", "Трек с которого всё началось.", "Она хотела делать ветер... Эх."],
+                        'ocherk': ["Очень жизненные слова.", "Глубокий смысл, заставляет задуматься.", "Рифмы пробивают насквозь."],
+                        'kruzhit_vaib': ["Летаем выше крыш!", "Ночная трасса и этот трек...", "Идеально для вечерних покатушек."]
+                    };
+
+                    Object.keys(songSpecificContexts).forEach(function(songKey) {
+                        var songArray = [];
+                        var templates = genericGood.concat(songSpecificContexts[songKey]);
+                        var count = Math.floor(Math.random() * 11) + 20; // от 20 до 30
+                        for (var i = 0; i < count; i++) {
+                            var rName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                            var rText = templates[Math.floor(Math.random() * templates.length)];
+                            var rDay = Math.floor(Math.random() * 28) + 1;
+                            var rMonth = ['янв', 'фев', 'мар', 'апр'][Math.floor(Math.random() * 4)];
+                            var rDate = rDay + " " + rMonth + " 2026, " + (Math.floor(Math.random()*14)+10) + ":" + (Math.floor(Math.random()*50)+10);
+                            
+                            songArray.push({name: rName, text: rText, date: rDate});
+                        }
+                        
+                        // Сортируем даты по убыванию, но визуально они будут отображаться "старые снизу, новые сверху" 
+                        // так как в коде идет .slice().reverse()
+                        allComments[songKey] = songArray;
+                    });
+                    
+                    localStorage.setItem('ulukmanapo_song_comments', JSON.stringify(allComments));
+                }
+
+                function formatNumber(num) {
+                    if(num >= 1000000) return (num/1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+                    if(num >= 1000) return (num/1000).toFixed(1).replace(/\.0$/, '') + 'k';
+                    return num;
+                }
+
+                var stats = JSON.parse(localStorage.getItem('ulukmanapo_stats') || '{}');
+                document.querySelectorAll('.song-stats').forEach(function(statDiv) {
+                    var likeBtn = statDiv.querySelector('.like-btn');
+                    var playStat = statDiv.querySelector('.play-stat .play-count');
+                    var commentStat = statDiv.querySelector('.comment-count');
+                    var songId = likeBtn.getAttribute('data-song');
+
+                    if (!songId) return;
+
+                    var commentLink = statDiv.querySelector('a');
+                    if (commentLink) {
+                        commentLink.href = 'comments.html?song=' + songId;
+                    }
+
+                    // Обновляем статистику
+                    if (!stats[songId]) {
+                        stats[songId] = {
+                            likes: Math.floor(Math.random() * 5000) + 500,
+                            plays: Math.floor(Math.random() * 50000) + 10000,
+                            comments: allComments[songId] ? allComments[songId].length : 0,
+                            isLiked: false
+                        };
+                    } else {
+                        // Синхронизируем количество комментариев с реальным массивом
+                        stats[songId].comments = allComments[songId] ? allComments[songId].length : 0;
+                        localStorage.setItem('ulukmanapo_stats', JSON.stringify(stats));
+                    }
+                    var s = stats[songId];
+
+                    function updateUI() {
+                        likeBtn.querySelector('.like-count').textContent = formatNumber(s.likes);
+                        playStat.textContent = formatNumber(s.plays);
+                        commentStat.textContent = formatNumber(s.comments);
+
+                        var icon = likeBtn.querySelector('i');
+                        if (s.isLiked) {
+                            likeBtn.classList.add('liked');
+                            icon.classList.remove('fa-regular');
+                            icon.classList.add('fa-solid');
+                        } else {
+                            likeBtn.classList.remove('liked');
+                            icon.classList.remove('fa-solid');
+                            icon.classList.add('fa-regular');
+                        }
+                    }
+                    updateUI();
+
+                    // Обработка лайков
+                    likeBtn.addEventListener('click', function() {
+                        if (s.isLiked) {
+                            s.likes--;
+                            s.isLiked = false;
+                        } else {
+                            s.likes++;
+                            s.isLiked = true;
+                        }
+                        updateUI();
+                        localStorage.setItem('ulukmanapo_stats', JSON.stringify(stats));
+                    });
+                });
+
+                audios.forEach(function(audio) {
+                    var songId = audio.getAttribute('data-song');
+                    var hasPlayedInSession = false;
+
+                    audio.addEventListener('play', function(e) {
+                        if (!isSubscribed) {
+                            // Если не подписан, ставим плеер на паузу и показываем модалку
+                            audio.pause();
+                            currentAudio = audio;
+                            subModal.style.display = 'flex';
+                        } else {
+                            // Если подписан, при включении одной песни, ставим другие на паузу
+                            audios.forEach(function(a) {
+                                if (a !== audio) {
+                                    a.pause();
+                                }
+                            });
+
+                            // Увеличиваем счетчик прослушиваний
+                            if (!hasPlayedInSession && songId && stats[songId]) {
+                                hasPlayedInSession = true;
+                                stats[songId].plays++;
+                                localStorage.setItem('ulukmanapo_stats', JSON.stringify(stats));
+                                
+                                var parentDiv = audio.closest('.blog-text');
+                                if (parentDiv) {
+                                    var playCountElem = parentDiv.querySelector('.play-stat .play-count');
+                                    if (playCountElem) {
+                                        playCountElem.textContent = formatNumber(stats[songId].plays);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+
+                btnSubscribe.addEventListener('click', function() {
+                    var originalText = btnSubscribe.textContent;
+                    btnSubscribe.textContent = 'Оформление...';
+                    btnSubscribe.disabled = true;
+                    
+                    // Эмуляция процесса обработки платежа
+                    setTimeout(function() {
+                        localStorage.setItem('ulukmanapo_subscribed', 'true');
+                        isSubscribed = true;
+                        subModal.style.display = 'none';
+                        btnSubscribe.textContent = originalText;
+                        btnSubscribe.disabled = false;
+                        
+                        alert('Спасибо за подписку! Теперь вы можете слушать все треки без ограничений.');
+                        
+                        if (currentAudio) {
+                            currentAudio.play();
+                            currentAudio = null;
+                        }
+                    }, 1200);
+                });
+
+                btnCloseSub.addEventListener('click', function() {
+                    subModal.style.display = 'none';
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                        currentAudio = null;
+                    }
+                });
+            });
+        </script>
+</body>
+
 </html>
